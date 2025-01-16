@@ -1,0 +1,347 @@
+/* Main SASS File */
+
+/* Variables */
+$font-primary: "Poppins";
+$font-secondary: "Barlow";
+$color-primary: #5fbe30;
+$color-secondary: #9bcc3e;
+$color-grey: grey;
+$color-light-grey: #f3f2f2;
+$color-dark-grey: rgb(65, 65, 65);
+$max-width: 1280px;
+
+/* Mixins */
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin button-style($bg, $color, $border) {
+  background: $bg;
+  color: $color;
+  border: 1px solid $border;
+  padding: 10px 20px;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+}
+
+/* Font-face Declarations */
+@font-face {
+  font-family: $font-primary;
+  src: url("/assets/fonts/poppins/Poppins-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: $font-primary;
+  src: url("/assets/fonts/poppins/Poppins-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: $font-secondary;
+  src: url("/assets/fonts/barlow/Barlow-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: $font-secondary;
+  src: url("/assets/fonts/barlow/Barlow-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* General Styles */
+body {
+  font-family: $font-primary;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  width: 90%;
+  max-width: $max-width;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  @include flex-center;
+  justify-content: space-between;
+  padding: 10px 0;
+  .container {
+    @include flex-center;
+    justify-content: space-between;
+    position: relative;
+  }
+}
+.logo {
+  height: 40px;
+}
+.menu-btn {
+  font-size: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: $color-dark-grey;
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgb(199, 199, 199);
+  }
+  &::before {
+    top: 100%;
+    margin-top: -10px;
+  }
+  &::after {
+    top: calc(100% + 6px);
+  }
+}
+.menu-content {
+  display: none;
+  background-color: $color-light-grey;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 200px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      margin: 10px 0;
+      a {
+        color: rgb(52, 52, 52);
+        text-decoration: none;
+        font-size: 16px;
+        display: block;
+        padding: 8px 0;
+        &:hover {
+          background-color: #e4e4e4;
+        }
+      }
+    }
+  }
+}
+
+/* Buttons */
+button {
+  @include button-style(rgb(137, 137, 137), #fff, rgb(137, 137, 137));
+}
+button[type="submit"] {
+  @include button-style($color-primary, #fff, $color-primary);
+}
+.service-item button {
+  @include button-style($color-secondary, #fff, $color-secondary);
+}
+.newsletter button {
+  @include button-style(transparent, #fff, #fff);
+}
+
+/* Intro Section */
+.intro-text {
+  padding: 70px;
+  margin-top: 20px;
+  p {
+    font-size: 16px;
+    color: $color-grey;
+    text-align: left;
+  }
+  h1 {
+    font-size: 70px;
+    margin: 10px 0;
+    text-align: left;
+  }
+}
+.date {
+  font-family: $font-secondary;
+  font-weight: bold;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+.icon-links {
+  margin-top: 50px;
+}
+.icon-link {
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+/* Slider */
+.slider {
+  overflow: hidden;
+  position: relative;
+  padding: 20px 0;
+  background: #fff;
+  .slide {
+    display: none;
+    text-align: center;
+    &:first-child {
+      display: block;
+    }
+  }
+}
+
+/* Services Section */
+.services {
+  .container {
+    @include flex-center;
+    justify-content: space-between;
+    gap: 20px;
+    background: linear-gradient(90deg, #f4f4f4, #e8e8e8);
+    border-top-right-radius: 30px;
+    padding: 40px 0;
+    .service-item {
+      flex: 1;
+      text-align: left;
+      padding: 20px 60px;
+      h1 {
+        font-size: 15px;
+        color: $color-grey;
+        text-transform: uppercase;
+        font-family: $font-secondary;
+        letter-spacing: 4px;
+        margin-bottom: 4px;
+      }
+      h2 {
+        margin: 0 0 10px;
+        font-size: 40px;
+      }
+      p {
+        font-size: 14px;
+        margin-bottom: 15px;
+        color: $color-grey;
+      }
+      button {
+        @include button-style(transparent, $color-grey, $color-grey);
+      }
+    }
+  }
+}
+
+/* Contact Form */
+.contact {
+  padding: 40px 0;
+  .from-elements {
+    @include flex-center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  input {
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  button {
+    display: block;
+    margin: 20px auto;
+    @include button-style(#fff, rgb(49, 49, 49), gray);
+  }
+}
+
+/* Newsletter Section */
+.newsletter {
+  text-align: center;
+  padding: 40px 0;
+  background: linear-gradient(90deg, $color-secondary, $color-primary);
+  color: #fff;
+  h2 {
+    font-size: 40px;
+    margin: 0;
+  }
+  .subtext {
+    font-family: $font-secondary;
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+}
+
+/* Footer */
+.footer {
+  background: #fff;
+  color: #6b6b6b;
+  padding: 20px;
+  font-size: small;
+  border-top: 1px solid #b2b2b2;
+  .footer-content {
+    @include flex-center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    a {
+      color: #6b6b6b;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 320px) {
+  body {
+    font-size: 14px;
+  }
+  .header {
+    flex-direction: column;
+    align-items: center;
+    .logo {
+      height: 30px;
+      margin-bottom: 10px;
+    }
+  }
+  .intro-text {
+    padding: 20px;
+    h1 {
+      font-size: 35px;
+      line-height: 1.2;
+    }
+    p {
+      font-size: 12px;
+      margin: 15px 0;
+    }
+  }
+  .slider {
+    width: 100%;
+    height: auto;
+  }
+  .services {
+    .container {
+      flex-direction: column;
+      padding: 20px;
+    }
+  }
+  .footer {
+    font-size: 12px;
+    text-align: center;
+    .footer-content {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
